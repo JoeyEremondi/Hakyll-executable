@@ -15,8 +15,7 @@ before_script:
   - git checkout gh-pages
   - git pull origin gh-pages
   - cd .. 
-  - rm ./_bin/site
-script: cp ./site ./_bin/site.bin
+script: yes | cp ./site ./_bin/site.bin
 after_script:
   - cd _bin
   - git status
