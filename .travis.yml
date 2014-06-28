@@ -1,7 +1,7 @@
 language: haskell
 branches:
   only:
-    - source
+    - master
 env:
   global:
     - secure: "GARpjGpbqe4R3Lh1JjJMe4VxuXSN+rWKIHj9S5wPUvwQ7UyQ3Fa6Tz9Wn0VYXGGVJ8AVqVsvSab8ycZg+kKwYuDW+/ubl5x6NBI2BReE5tACbnIlaP0rIMRLaUIj5PQ75P3S10vcQXPIQIoktuXQ9V+eCMoZXmQMREG1HRIpAxA="
