@@ -14,7 +14,7 @@ before_script:
   - cd _bin
   - git checkout master
   - git pull origin master
-  - cd ..
+  - cd .. 
 script: cp ./site ./_bin/site
 after_script:
   - cd _bin
