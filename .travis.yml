@@ -8,7 +8,7 @@ env:
 ghc:
   - 7.6
 install:
-  - cabal install hakyll
+  - cabal install -j hakyll
   - ghc --make site.hs
 before_script:
   - cd _bin
