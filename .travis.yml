@@ -11,7 +11,7 @@ install:
   - cabal install -j hakyll
   - ghc --make site.hs
 before_script:
-  - cd _bin
+  - cd _bin 
   - git checkout gh-pages
   - git pull origin gh-pages
   - cd .. 
