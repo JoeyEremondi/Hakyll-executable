@@ -1,0 +1,27 @@
+language: haskell
+branches:
+  only:
+    - source
+env:
+  global:
+    - secure: "GARpjGpbqe4R3Lh1JjJMe4VxuXSN+rWKIHj9S5wPUvwQ7UyQ3Fa6Tz9Wn0VYXGGVJ8AVqVsvSab8ycZg+kKwYuDW+/ubl5x6NBI2BReE5tACbnIlaP0rIMRLaUIj5PQ75P3S10vcQXPIQIoktuXQ9V+eCMoZXmQMREG1HRIpAxA="
+ghc:
+  - 7.6
+install:
+  - cabal install hakyll
+  - ghc --make site.hs
+before_script:
+  - cd _bin
+  - git checkout master
+  - git pull origin master
+  - cd ..
+script: cp ./site ./_bin/site
+after_script:
+  - cd _bin
+  - git status
+  - git add site
+  - git config --global user.email "joey@eremondi.com"
+  - git config --global user.name "JoeyEremondi"
+  - git commit -m "snapshot $(date '+%m/%d/%y %H:%M')"
+  - git push "$HAKYLL_EXEC_URL" master | grep -v http
+  - cd ..
