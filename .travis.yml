@@ -12,8 +12,8 @@ install:
   - ghc --make site.hs
 before_script:
   - cd _bin
-  - git checkout master
-  - git pull origin master
+  - git checkout gh-pages
+  - git pull origin gh-pages
   - cd .. 
 script: cp ./site ./_bin/site
 after_script:
@@ -23,5 +23,5 @@ after_script:
   - git config --global user.email "joey@eremondi.com"
   - git config --global user.name "JoeyEremondi"
   - git commit -m "snapshot $(date '+%m/%d/%y %H:%M')"
-  - git push "$HAKYLL_EXEC_URL" master | grep -v http
+  - git push "$HAKYLL_EXEC_URL" gh-pages | grep -v http
   - cd ..
