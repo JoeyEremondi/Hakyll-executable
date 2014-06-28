@@ -15,13 +15,14 @@ before_script:
   - git checkout gh-pages
   - git pull origin gh-pages
   - cd .. 
-script: cp ./site ./_bin/site
+  - rm ./_bin/site
+script: cp ./site ./_bin/site.bin
 after_script:
   - cd _bin
   - git status
-  - git add site
+  - git add site.bin
   - git config --global user.email "joey@eremondi.com"
   - git config --global user.name "JoeyEremondi"
   - git commit -m "snapshot $(date '+%m/%d/%y %H:%M')"
-  - git push "$HAKYLL_EXEC_URL" gh-pages | grep -v http
+  - git push "$HAKYLL_EXEC_URL" gh-pages 2>&1 | grep -v http
   - cd ..
