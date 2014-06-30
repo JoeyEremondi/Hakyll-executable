@@ -8,10 +8,10 @@ env:
 ghc:
 - 7.6
 install:
-- wget http://joeyeremondi.github.io/Hakyll-sandbox/hakyll-sandbox.tar.gz
-- tar -zxf ./hakyll-sandbox.tar.gz 
+#- wget http://joeyeremondi.github.io/Hakyll-sandbox/hakyll-sandbox.tar.gz
+#- tar -zxf ./hakyll-sandbox.tar.gz 
 - cabal sandbox init
-- cabal install --reinstall hakyll
+#- cabal install --reinstall hakyll
 - cabal install
 before_script:
 - cd _bin
