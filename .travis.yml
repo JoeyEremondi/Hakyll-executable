@@ -1,27 +1,27 @@
 language: haskell
 branches:
   only:
-    - source
+  - source
 env:
   global:
-    - secure: "GARpjGpbqe4R3Lh1JjJMe4VxuXSN+rWKIHj9S5wPUvwQ7UyQ3Fa6Tz9Wn0VYXGGVJ8AVqVsvSab8ycZg+kKwYuDW+/ubl5x6NBI2BReE5tACbnIlaP0rIMRLaUIj5PQ75P3S10vcQXPIQIoktuXQ9V+eCMoZXmQMREG1HRIpAxA="
+  - secure: KOMME8RshDgt7013KKe4fuHEh3txtJyPofv+b3+ZqSclsklzpbfL9rke5s7xu3BBEU/QgC0qk0YFHC64luzdSEbL2l44iRtGL/J4dUsKzRak7VfJwg5K2p+HRCwwjexYUPOGGT7F+lPF3H25l8bb84mOcrAL5SsDFdB0DZzq0Hw=
 ghc:
-  - 7.6
+- 7.6
 install:
-  - cabal install -j hakyll
-  - ghc --make site.hs
+- cabal install -j hakyll
+- ghc --make site.hs
 before_script:
-  - cd _bin 
-  - git checkout gh-pages
-  - git pull origin gh-pages
-  - cd .. 
+- cd _bin
+- git checkout gh-pages
+- git pull origin gh-pages
+- cd ..
 script: yes | cp ./site ./_bin/site.bin
 after_script:
-  - cd _bin
-  - git status
-  - git add site.bin
-  - git config --global user.email "joey@eremondi.com"
-  - git config --global user.name "JoeyEremondi"
-  - git commit -m "snapshot $(date '+%m/%d/%y %H:%M')"
-  - git push "$HAKYLL_EXEC_URL" gh-pages 2>&1 | grep -v http
-  - cd ..
+- cd _bin
+- git status
+- git add site.bin
+- git config --global user.email "joey@eremondi.com"
+- git config --global user.name "JoeyEremondi"
+- git commit -m "snapshot $(date '+%m/%d/%y %H:%M')"
+- git push "$HAKYLL_EXEC_URL" gh-pages >/dev/null 2>&1
+- cd ..
