@@ -9,7 +9,7 @@ ghc:
 - 7.6
 install:
 - wget http://joeyeremondi.github.io/Hakyll-sandbox/hakyll-sandbox.tar.gz
-- tar -xvfz ./hakyll-sandbox.tar.gz ./
+- tar -zxf ./hakyll-sandbox.tar.gz 
 - cabal sandbox init
 - cabal install -j 
 before_script:
