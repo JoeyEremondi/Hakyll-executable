@@ -8,14 +8,16 @@ env:
 ghc:
 - 7.6
 install:
-- cabal install -j hakyll
-- ghc --make site.hs
+- wget http://joeyeremondi.github.io/Hakyll-sandbox/hakyll-sandbox.tar.gz
+- tar -xvfz ./hakyll-sandbox.tar.gz ./
+- cabal sandbox init
+- cabal install -j 
 before_script:
 - cd _bin
 - git checkout gh-pages
 - git pull origin gh-pages
 - cd ..
-script: yes | cp ./site ./_bin/site.bin
+script: yes | cp ./.cabal-sandbox/bin/site ./_bin/site.bin
 after_script:
 - cd _bin
 - git status
