@@ -17,9 +17,14 @@ main = hakyll $ do
 
     match (fromList ["about.md", "contact.md", "publications.md", "research.md", "software.md"]) $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
-            >>= relativizeUrls
+        compile $ do
+            posts <- getPosts
+            let pageCtx =
+                    listField "posts" postCtx (return posts) `mappend`
+                    defaultContext
+            pandocCompiler
+                >>= loadAndApplyTemplate "templates/default.html" pageCtx
+                >>= relativizeUrls
 
     match "posts/*" $ do
         route $ setExtension "html"
@@ -31,7 +36,7 @@ main = hakyll $ do
     create ["archive.html"] $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
+            posts <- getPosts
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
@@ -65,3 +70,5 @@ postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+    
+getPosts = recentFirst =<< loadAll "posts/*"
