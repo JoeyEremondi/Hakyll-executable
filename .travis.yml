@@ -11,7 +11,8 @@ install:
 - wget http://joeyeremondi.github.io/Hakyll-sandbox/hakyll-sandbox.tar.gz
 - tar -zxf ./hakyll-sandbox.tar.gz 
 - cabal sandbox init
-- cabal install -j 
+- cabal install hakyll
+- cabal install
 before_script:
 - cd _bin
 - git checkout gh-pages
