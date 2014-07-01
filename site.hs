@@ -31,16 +31,10 @@ main = hakyll $ do
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ do
-            posts <- getPostsList
-            let sidebarCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Home"                `mappend`
-                    postCtx
-            pandocCompiler
-                >>= loadAndApplyTemplate "templates/post.html"    sidebarCtx
-                >>= loadAndApplyTemplate "templates/default.html" sidebarCtx
-                >>= relativizeUrls
+        compile $ pandocCompiler
+            >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= relativizeUrls
 
     create ["archive.html"] $ do
         route idRoute
