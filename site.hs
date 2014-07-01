@@ -24,7 +24,7 @@ main = hakyll $ do
                     constField "title" "Home"                `mappend`
                     defaultContext
 
-            getResourceBody
+            pandocCompiler
                 >>= applyAsTemplate sidebarCtx
                 >>= loadAndApplyTemplate "templates/default.html" sidebarCtx
                 >>= relativizeUrls
