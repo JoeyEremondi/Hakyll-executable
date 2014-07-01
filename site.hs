@@ -19,19 +19,28 @@ main = hakyll $ do
         route   $ setExtension "html"
         compile $ do
             posts <- getPosts
-            let pageCtx =
+            let sidebarCtx =
                     listField "posts" postCtx (return posts) `mappend`
+                    constField "title" "Home"                `mappend`
                     defaultContext
-            pandocCompiler
-                >>= loadAndApplyTemplate "templates/default.html" pageCtx
+
+            getResourceBody
+                >>= applyAsTemplate sidebarCtx
+                >>= loadAndApplyTemplate "templates/default.html" sidebarCtx
                 >>= relativizeUrls
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
-            >>= relativizeUrls
+        compile $ getPosts
+            posts <- getPosts
+            let sidebarCtx =
+                    listField "posts" postCtx (return posts) `mappend`
+                    constField "title" "Home"                `mappend`
+                    postCtx
+            pandocCompiler
+                >>= loadAndApplyTemplate "templates/post.html"    sidebarCtx
+                >>= loadAndApplyTemplate "templates/default.html" sidebarCtx
+                >>= relativizeUrls
 
     create ["archive.html"] $ do
         route idRoute
