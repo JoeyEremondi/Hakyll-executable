@@ -18,7 +18,7 @@ main = hakyll $ do
     match (fromList ["about.md", "contact.md", "publications.md", "research.md", "software.md"]) $ do
         route   $ setExtension "html"
         compile $ do
-            posts <- getPosts
+            posts <- getPostsList
             let sidebarCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Home"                `mappend`
@@ -31,8 +31,8 @@ main = hakyll $ do
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ getPosts
-            posts <- getPosts
+        compile $ do
+            posts <- getPostsList
             let sidebarCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Home"                `mappend`
@@ -45,7 +45,7 @@ main = hakyll $ do
     create ["archive.html"] $ do
         route idRoute
         compile $ do
-            posts <- getPosts
+            posts <- getPostsList
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
@@ -80,4 +80,4 @@ postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
     
-getPosts = recentFirst =<< loadAll "posts/*"
+getPostsList = recentFirst =<< loadAll "posts/*"
