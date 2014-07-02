@@ -1,20 +1,23 @@
-language: haskell
+#language: haskell
 branches:
   only:
   - source
 env:
   global:
   - secure: KOMME8RshDgt7013KKe4fuHEh3txtJyPofv+b3+ZqSclsklzpbfL9rke5s7xu3BBEU/QgC0qk0YFHC64luzdSEbL2l44iRtGL/J4dUsKzRak7VfJwg5K2p+HRCwwjexYUPOGGT7F+lPF3H25l8bb84mOcrAL5SsDFdB0DZzq0Hw=
-ghc:
-- 7.6
+#ghc:
+#- 7.6
 
 #- wget http://joeyeremondi.github.io/Hakyll-sandbox/hakyll-sandbox.tar.gz
 #- tar -zxf ./hakyll-sandbox.tar.gz 
 #- cabal sandbox init
 #- travis_retry sudo apt-get install pandoc
 before_install:
-- cabal update
-- cabal install --max-backjumps=-1 hakyll pandoc
+ - travis_retry sudo apt-get update
+ - travis_retry sudo apt-get install ghc libghc-hakyll-dev # see note about happy/alex
+ - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/1.18/bin:$PATH
+#- cabal update
+#- cabal install --max-backjumps=-1 hakyll pandoc
 install:
 - ghc --make site.hs
 before_script:
