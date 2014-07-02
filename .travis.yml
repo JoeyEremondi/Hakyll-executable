@@ -1,4 +1,4 @@
-#language: haskell
+language: haskell
 branches:
   only:
   - source
@@ -14,7 +14,7 @@ env:
 #- travis_retry sudo apt-get install pandoc
 before_install:
  - travis_retry sudo apt-get update
- - travis_retry sudo apt-get install ghc libghc-hakyll-dev # see note about happy/alex
+ - travis_retry sudo apt-get install libghc-hakyll-dev # see note about happy/alex
  - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/1.18/bin:$PATH
 #- cabal update
 #- cabal install --max-backjumps=-1 hakyll pandoc
