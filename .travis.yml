@@ -14,7 +14,7 @@ ghc:
 #- travis_retry sudo apt-get install pandoc
 before_install:
 - cabal update
-- cabal install hakyll pandoc
+- cabal install --max-backjumps=-1 hakyll pandoc
 install:
 - ghc --make site.hs
 before_script:
