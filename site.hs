@@ -21,7 +21,6 @@ main = hakyll $ do
             posts <- fakePosts
             let sidebarCtx =
                     listField "posts" postCtx (return posts) `mappend`
-                    --constField "title" "Home"                `mappend`
                     defaultContext
 
             pandocCompiler
