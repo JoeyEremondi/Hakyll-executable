@@ -12,7 +12,7 @@ main = hakyll $ do
         compile copyFileCompiler
 
     match "css/*" $ do
-        route   idRouote
+        route   idRoute
         compile compressCssCompiler
 
     match (fromList ["about.md", "contact.md", "publications.md", "research.md", "software.md"]) $ do
