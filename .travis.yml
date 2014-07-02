@@ -7,12 +7,15 @@ env:
   - secure: KOMME8RshDgt7013KKe4fuHEh3txtJyPofv+b3+ZqSclsklzpbfL9rke5s7xu3BBEU/QgC0qk0YFHC64luzdSEbL2l44iRtGL/J4dUsKzRak7VfJwg5K2p+HRCwwjexYUPOGGT7F+lPF3H25l8bb84mOcrAL5SsDFdB0DZzq0Hw=
 ghc:
 - 7.6
-install:
+
 #- wget http://joeyeremondi.github.io/Hakyll-sandbox/hakyll-sandbox.tar.gz
 #- tar -zxf ./hakyll-sandbox.tar.gz 
 #- cabal sandbox init
 #- travis_retry sudo apt-get install pandoc
+before_install:
+- cabal update
 - cabal install -j hakyll
+install:
 - ghc --make site.hs
 before_script:
 - cd _bin
