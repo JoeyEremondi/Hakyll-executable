@@ -12,7 +12,7 @@ main = hakyll $ do
         compile copyFileCompiler
 
     match "css/*" $ do
-        route   idRoute
+        route   idRouote
         compile compressCssCompiler
 
     match (fromList ["about.md", "contact.md", "publications.md", "research.md", "software.md"]) $ do
@@ -81,7 +81,7 @@ postCtx =
     defaultContext
     
 fakePosts :: Compiler [Item String]
-fakePosts = do
+fakePosts = recentFirst =<< do
         identifiers <- getMatches "posts/*"
         return [Item identifier "" | identifier <- identifiers]
     
