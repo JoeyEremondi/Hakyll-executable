@@ -11,8 +11,8 @@ install:
 #- wget http://joeyeremondi.github.io/Hakyll-sandbox/hakyll-sandbox.tar.gz
 #- tar -zxf ./hakyll-sandbox.tar.gz 
 #- cabal sandbox init
-apt-get install pandoc
-cabal install -j hakyll
+- apt-get install pandoc
+- cabal install -j hakyll
 - ghc --make site.hs
 before_script:
 - cd _bin
