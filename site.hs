@@ -82,6 +82,6 @@ postCtx =
 fakePosts :: Compiler [Item String]
 fakePosts = recentFirst =<< do
         identifiers <- getMatches "posts/*"
-        return [Item identifier "" | identifier <- identifiers]
+        return $ take 6 [Item identifier "" | identifier <- identifiers]
     
 getPostsList = recentFirst =<< loadAll "posts/*"
