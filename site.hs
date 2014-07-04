@@ -15,7 +15,7 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.md", "contact.md", "publications.md", "research.md", "software.md"]) $ do
+    match (fromList ["about.md", "contact.md", "publications.md", "research.md", "software.md", "privacy.md"]) $ do
         route   $ setExtension "html"
         compile $ do
             posts <- fakePosts
